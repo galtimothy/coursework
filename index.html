@@ -12,62 +12,28 @@
 
         <div id="app">
             <div class="main-nav">
-                <button class="checkout">Checkout</button>
+                <div class="filters-container">
+                   
+                </div>
+                <button class="checkout"> Checkout : £ {{cartTotal}}</button>
             </div>
 
             <main>
-                <div class="lesson">
+                <div class="lesson" v-for="lesson in sort">
                     <div class="holder">
                         <div class="card-image" v-bind:style="{ 'background-image': 'url(' + lesson.image + ')' }"></div>
                         <div class="card-info">
                             <div class="card-subject">{{ lesson.subject }}</div>
-                            <div class="card-spaces">Spaces left: {{ lesson.availableSpaces }}</div>
+                            <div class="card-spaces">Spaces left: {{ getAvailableSpaces(lesson) }}</div>
                             <div class="card-location">{{ lesson.location }}</div>
-                            <div class="card-price">£{{ convertedPrice }}</div>
-                            <button class="addToCart" v-on:click="addToCart" :disabled="isAvailable">Add to cart</button>
+                            <div class="card-price">£{{ lesson.price }}</div>
+                            <button class="addToCart" @click="addToCart(lesson)" :disabled="isAvailable(lesson)">Add to cart</button>
                         </div>   
                     </div>
                 </div>
             </main>
         </div>
-        <script>
-
-            let app = new Vue({
-                el: '#app',
-                data: {
-                    cart: [],
-                    sitename: 'After school classes',
-                    lesson: {
-                        id: 1,
-                        subject: 'Music',
-                        location: 'London',
-                        image: 'image\music.jpg',
-                        price: 2050,
-                        availableSpaces: 5
-                    }
-                },
-                methods: {
-                    addToCart() {
-                        let spaces = this.lesson.availableSpaces;
-    
-                        if(spaces <= 0) {
-                            alert("No available spaces");
-                        } else {
-                            this.cart.push(this.lesson.id);
-                            this.lesson.availableSpaces--;
-                        }
-                    }
-                },
-                computed: {
-                    isAvailable() {
-                        return (this.lesson.availableSpaces > 0) ? false : true;
-                    },
-                    convertedPrice() {
-                        return (this.lesson.price/100).toFixed(2);
-                    }
-                }
-            });
-    
-        </script>
+        <script src="classes.js"></script>
+        <script src="app.js"></script>
     </body>
 </html>

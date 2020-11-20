@@ -49,11 +49,11 @@ let app = new Vue({
         viewCart(value) {
 
             this.cartShown = value;
-            if(value == true)
+            
 
         },
-        removeItem: function(item) {
-            this.cart.splice(this.item.indexOf(item), 1);
+        removeItem(index, event) {
+            this.cart.splice(index, 1);
         },
         getAvailableSpaces(lesson) {
             return lesson.availableSpaces - this.countCart(lesson);
@@ -66,6 +66,21 @@ let app = new Vue({
         },
         selectedOrder(order) {
             return order == this.selectedOrder ? true : false;
+        },
+        increaseQuantity(item) {
+            if(item.quantity < 5 ) {
+                item.quantity++;  
+            }          
+        },
+        decreaseQuantity(item) {
+            if (item.quantity > 0)
+            {
+                item.quantity--; 
+            }           
+        }, 
+        checkout () {
+            alert('Thank you, you are now booked into your class(s)');
+            this.cart = [];
         }
 
     },
@@ -79,7 +94,7 @@ let app = new Vue({
         cartTotal() {
             let total = 0;
             this.cart.forEach (item => {
-                total += item.lesson.price*item.quantity;
+                total += item.lesson.price * item.quantity;
             });
             return total.toFixed(2);
         },
@@ -99,7 +114,8 @@ let app = new Vue({
                 return 0; 
             }
             return lessonsArray.sort(compare); 
-        }
+        },
+        
              
                 
     }           

@@ -27,9 +27,9 @@
                                 <div class="price">£{{ item.lesson.price}}</div>
                             </div>
                             <div class="changeQuantity">
-                                <button class="increaseQuantity" @click="increaseQuantity(index)"> + </button>
+                                <button class="increaseQuantity" @click="increaseQuantity(item)"> + </button>
                                 <div class="quantity">{{ item.quantity}}</div>
-                                <button class="increaseQuantity" @click="increaseQuantity(index)"> - </button>
+                                <button class="decreaseQuantity" @click="decreaseQuantity(item)"> - </button>
                             </div>
                             <button class="remove" @click="removeItem(index)">Remove</button>    
                         </div>
@@ -43,7 +43,7 @@
                             <input type="text" placeholder="Name" v-model="order.name"/><br><br>
                            <label for="number">Number : </label><br><br>
                            <input type="number" placeholder="Number" v-model="order.number"/>
-                           <button class="checkout-btn">Checkout</button>
+                           <button class="checkout-btn" @click="checkout" :disabled="isValidCheckout">Checkout</button>
                         </form>
                     </div>
                     

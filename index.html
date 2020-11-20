@@ -11,23 +11,75 @@
     <body>
 
         <div id="app">
-            <div class="main-nav">
-                <div class="filters-container">
-                   
+
+            <div class="shoppingCart hideCart" v-bind:class="{ viewCart : isCartShown }">
+                <div class="checkout">
+                    <div class="checkout-title">total: £ {{cartTotal}}</div>
                 </div>
-                <button class="checkout"> Checkout : £ {{cartTotal}}</button>
+                <div class="cart-container">
+                    <button class="close-cart" @click="viewCart(false)">close X </button>
+                
+                    <div class="items" v-if="itemsInCart">
+                        <div class="item" v-for="(item, index) in cart">
+                            <div class="item-container">
+                                <div class="subject">{{ item.lesson.subject }}</div>
+                                <div class="location">{{ item.lesson.location}}</div>
+                                <div class="price">£{{ item.lesson.price}}</div>
+                            </div>
+                            <div class="changeQuantity">
+                                <button class="increaseQuantity" @click="increaseQuantity()"> + </button>
+                                <div class="quantity">{{ item.quantity}}</div>
+                                <button class="increaseQuantity" @click="increaseQuantity()"> - </button>
+                            </div>
+                            <button class="remove" @click="removeItem(index)">Remove</button>    
+                        </div>
+                    </div>    
+                    
+
+
+                    <div class="form">
+                        <form action="" method="POST">
+                           <label for="name">Name : </label><br><br>
+                            <input type="text" placeholder="Name" v-model="order.name"/><br><br>
+                           <label for="number">Number : </label><br><br>
+                           <input type="number" placeholder="Number" v-model="order.number"/>
+                           <button class="checkout-btn">Checkout</button>
+                        </form>
+                    </div>
+                    
+                </div>
             </div>
+
+            <div class="main-nav">
+                <div class="title">{{sitename}}</div>
+                <button class="view-cart" @click="viewCart(true)" :disabled="!itemsInCart"> cart : £ {{cartTotal}}</button>
+            </div>
+            <div class="filter-nav">
+                <div class="filters-container">
+                    <div class="filter-name">Order by :</div>
+                    <div class="filters-choices">
+                        <button v-for="filter in filters" @click="selectFilter = filter" v-blind:class="{ active: selectedFilter(filter) }"> {{filter}} </button>
+                    </div>
+                </div>
+                <div class="filters-container">
+                    <div class="filter-name">Sort as :</div>
+                    <div class="filters-choices">
+                        <button v-for="order in orderBy" @click="selectOrder = order" v-blind:class="{ active: selectedOrder(order) }"> {{order}} </button>
+                    </div>
+                </div>
+            </div>
+            
 
             <main>
                 <div class="lesson" v-for="lesson in sort">
-                    <div class="holder">
+                    <div class="lesson-container">
                         <div class="card-image" v-bind:style="{ 'background-image': 'url(' + lesson.image + ')' }"></div>
                         <div class="card-info">
                             <div class="card-subject">{{ lesson.subject }}</div>
                             <div class="card-spaces">Spaces left: {{ getAvailableSpaces(lesson) }}</div>
                             <div class="card-location">{{ lesson.location }}</div>
                             <div class="card-price">£{{ lesson.price }}</div>
-                            <button class="addToCart" @click="addToCart(lesson)" :disabled="isAvailable(lesson)">Add to cart</button>
+                            <button class="addToCart" @click="addToCart(lesson)" :disabled="available(lesson)">Add to cart</button>
                         </div>   
                     </div>
                 </div>

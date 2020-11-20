@@ -12,58 +12,242 @@ body {
 }
 
 .main-nav{
-    display: grid;
-    grid-template-columns: 4fr 1fr;	
     padding: 10px;
+    background: #42b983;
+    height: 75px;
+}
+
+.title {
+    margin-left: 20%;
+    font-size: 20px;
+    padding: 15px;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    float: left;
+}
+
+.view-cart {
+    height: 50px;
+    border-radius: 5px;
+    border: 0;
+    background: #42b983;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    float: right;
+}
+
+.shoppingCart {
+
+    position: fixed;
+    padding: 20px;
+    width: 50%;
+    height: 100%;
+    background: #d4eee2;
+    margin: 0;
+}
+
+.shoppingCart.showCart {
+    display: block;
+}
+
+.shoppingCart.hideCart {
+    display: none;
+}
+
+.checkout {
+    width: 100%;
+    padding: 20px;
+    
+}
+
+.checkout-title
+{
+    font-size: 20px;
+    color: #42b983;
+    float: right;
+}
+
+
+
+.form {
+    margin-top: 10px;
+    width: 100%;
+    padding: 20px;
+    background: silver;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.02);
+}
+
+.form label {
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.form input{
+    border-radius: 5px;
+    width: 100%;
+    border:0;
+    box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+}
+
+.item {
+    margin-top: 10px;
+    width: 100%;
+    padding: 20px;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    background: silver;
+    border-radius: 5px;
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.02);
+}
+
+.item-container {
+    float: left;
+    margin-top: 30px;
+}
+.changeQuantity {
+    float: right;
+    padding: 10px;
+}
+
+.changeQuantity button {
+    border-radius: 25px;
+    background: #42b983;
+    font-weight: bold;
+    border: 0;
+    width: 100%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.remove {
+    margin-top: 5%;
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 0;
+    background: #f35555;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.checkout-btn {
+    margin-top: 5%;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+    border: 0;
+    background: #42b983;
+    color: #fff;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+    margin-top: 50px;
+}
+
+.filter-nav {
+    padding: 10px;
+    background: #d4eee2;
+    height: 50px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.filters-container {
+    width: 100%;
+    height: 50px;
+    border: 0;
+    color: #fff;
+    align-items: center;
+}
+
+.filters-container .filter-name {
+    float: left;
+    font-weight: bold;
+    color:  #42b983;
+    margin-top: 5px;
+}
+
+.filters-choices button {
+    width: 100px;
+    height: 30px;
+    border: 0;
+    background: #42b983;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    align-items: center;
+    border-radius: 25px;
+    margin-left: 10px;
+}
+
+.filters-choices button.active {
+    color: #42b983;
+    background: #ccc;
+}
+
+main {
+    max-width: 1300px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .lesson {
-    display: grid;
-    grid-template-columns: 33.3333%;	
+    width: 33.33%;
     padding: 10px;
 }
 
-.holder {
-    background-color: #fff;
-    border: 1px solid #eee;
+.lesson-container {
     border-radius: 5px;
-    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.05);
+    box-shadow: 0px 0px 3px 1px rgba(0,0,0,0.02);
 }
 
-.holder .card-image {
-    width: 100%;
+.lesson-container .card-image {
+    
     height: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 
 
-.holder .card-info {
+.lesson-container .card-info {
     background: #f9f9f9;
     padding: 30px;
 }
 
-.holder .card-subject {
+.lesson-container .card-subject {
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 10px;
 }
 
-.holder .card-location {
+.lesson-container .card-location {
     font-size: 14px;
     margin-bottom: 10px;
 }
 
-.holder .card-spaces {
+.lesson-container .card-spaces {
     margin-bottom: 30px;
     color: rgba(0,0,0,0.5);
 }
 
-.holder .card-price {
+.lesson-container .card-price {
     color: #42b983;
     font-size: 20px;
     font-weight: bold;
@@ -85,16 +269,4 @@ body {
 .addToCart:disabled {
     background: #eee;
     color: #ccc;
-}
-
-.checkout {
-    width: 100%;
-    height: 50px;
-    border-radius: 5px;
-    border: 0;
-    background: #42b983;
-    color: #fff;
-    font-weight: bold;
-    text-transform: uppercase;
-    cursor: pointer;
 }

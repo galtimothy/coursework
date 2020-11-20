@@ -12,7 +12,7 @@
 
         <div id="app">
 
-            <div class="shoppingCart hideCart" v-bind:class="{ viewCart : isCartShown }">
+            <div class="shoppingCart hideCart" v-bind:class="{ showCart : isCartShown }">
                 <div class="checkout">
                     <div class="checkout-title">total: £ {{cartTotal}}</div>
                 </div>
@@ -27,9 +27,9 @@
                                 <div class="price">£{{ item.lesson.price}}</div>
                             </div>
                             <div class="changeQuantity">
-                                <button class="increaseQuantity" @click="increaseQuantity()"> + </button>
+                                <button class="increaseQuantity" @click="increaseQuantity(index)"> + </button>
                                 <div class="quantity">{{ item.quantity}}</div>
-                                <button class="increaseQuantity" @click="increaseQuantity()"> - </button>
+                                <button class="increaseQuantity" @click="increaseQuantity(index)"> - </button>
                             </div>
                             <button class="remove" @click="removeItem(index)">Remove</button>    
                         </div>

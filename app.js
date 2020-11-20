@@ -21,11 +21,20 @@ let app = new Vue({
         addToCart: function(lesson){
             if(this.getAvailableSpaces(lesson) > 0) {
                 
-                this.cart.push({
+                let exist = false;
+                this.cart.forEach( item => {
+                    if(item.lesson == lesson) {
+                    exist = true;
+                    item.quantity++;
+                    }
+                });
+
+                if(!exist){
+                    this.cart.push({
                     lesson: lesson,
                     quantity: 1
-                });
-                
+                    });
+                }
             }
         },
         countCart(lesson) {
@@ -40,12 +49,7 @@ let app = new Vue({
         viewCart(value) {
 
             this.cartShown = value;
-            if(value == true) {
-                document.body.add('body-no-scroll');
-            } else {
-                document.body.remove('body-no-scroll');
-            }
-            
+            if(value == true)
 
         },
         removeItem: function(item) {

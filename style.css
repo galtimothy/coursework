@@ -54,7 +54,7 @@ body {
 }
 
 .shoppingCart.hideCart {
-    display: none;
+    display: block;
 }
 
 .checkout {
